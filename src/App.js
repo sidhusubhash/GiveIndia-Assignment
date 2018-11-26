@@ -11,7 +11,7 @@ class App extends Component {
       isIntialCarDetailsValidated: true,
       isNewCarValidated: true,
       sortColor: '',
-      sortRegNo:''
+      sortRegNo: ''
     }
   }
   onChange = (value, type) => {
@@ -89,13 +89,24 @@ class App extends Component {
             <input placeholder='KA-01-HH-9899' onChange={(e) => this.setState({ newRegNo: e.target.value })} />
           </p>
           <p>color:
-            <input type="text" placeholder='colors' onChange={(e) => this.setState({ newColor: e.target.value })} />
-            <p className='warning'>Please choose these colors - Black,Red,Blue,White</p>
+            <select onChange={(e) => this.setState({ newColor: e.target.value })}>
+              <option value="" ></option>
+              <option value="Black" >Black</option>
+              <option value="Red" >Red</option>
+              <option value="Blue" >Blue</option>
+              <option value="White" >White</option>
+            </select>
           </p>
           <input type="submit" onClick={(e) => this.validateInput()} />
           {!isNewCarValidated && <p className='warning'>Invalid input!</p>}
           <p>Sort with color:
-            <input type="text" placeholder='colors' onChange={(e) => this.setState({ sortColor: e.target.value })} />
+          <select onChange={(e) => this.setState({ sortColor: e.target.value })}>
+              <option value="" ></option>
+              <option value="Black" >Black</option>
+              <option value="Red" >Red</option>
+              <option value="Blue" >Blue</option>
+              <option value="White" >White</option>
+            </select>
           </p>
           {sortColor
             &&
@@ -151,7 +162,7 @@ class App extends Component {
           <div className='display-parking-lots'>
             {data.map((item, index) => {
               return (
-                <div className='single-parking-lot' style={item.reg_no ? { backgroundColor: 'red' } : { backgroundColor: 'green' }}>
+                <div key={index} className='single-parking-lot' style={item.reg_no ? { backgroundColor: 'red' } : { backgroundColor: 'green' }}>
                   <p className='parging-lot-number-text'>{index + 1}</p>
                 </div>
               )
